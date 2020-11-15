@@ -3,10 +3,12 @@ package lab3.classes;
 import java.util.*;
 public class Teacher extends  Person{
 
+    private int teacherid;
     private List <Course> courses;
 
-    public Teacher(List<Course> courses, String lastName, String firstName) {
+    public Teacher(int teacherid, List<Course> courses, String lastName, String firstName) {
         super(lastName, firstName);
+        this.teacherid=teacherid;
         this.courses = courses;
     }
 
@@ -16,6 +18,14 @@ public class Teacher extends  Person{
 
     public void setCourses(List<Course> courses) {
         this.courses = courses;
+    }
+
+    public int getTeacherid() {
+        return teacherid;
+    }
+
+    public void setTeacherid(int teacherid) {
+        this.teacherid = teacherid;
     }
 
     @Override

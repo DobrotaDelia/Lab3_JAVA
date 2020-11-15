@@ -2,6 +2,7 @@ package lab3.repository;
 
 import lab3.classes.Course;
 import lab3.classes.Student;
+import lab3.classes.Teacher;
 
 
 import java.util.ArrayList;
@@ -24,16 +25,22 @@ public class CourseRepository  implements ICrudRepository <Course>  {
 
     @Override
     public Course findOne(Long id) {
+        for(Course c: courses)
+            if (c.getCourseid()==id)
+                return c;
         return null;
     }
 
     @Override
     public Iterable<Course> findAll() {
-        return null;
+        return courses;
     }
 
     @Override
     public Course save(Course entity) {
+        for(Course c:courses)
+            if(c.getCourseid()==entity.getCourseid())
+                return entity;
         return null;
     }
 

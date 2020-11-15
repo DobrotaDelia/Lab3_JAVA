@@ -2,6 +2,7 @@ package lab3.classes;
 
 import java.util.*;
 public class Course {
+    private int courseid;
     private String name;
     private Teacher teacher;
     private int maxEnrollment;
@@ -9,12 +10,21 @@ public class Course {
     private List <Student> studentsEnrolled;
 
 
-    public Course(String name, Teacher teacher, int maxEnrollment, int credits, List<Student> studentsEnrolled) {
+    public Course(int courseid, String name, Teacher teacher, int maxEnrollment, int credits, List<Student> studentsEnrolled) {
+        this.courseid=courseid;
         this.name = name;
         this.teacher = teacher;
         this.maxEnrollment = maxEnrollment;
         this.credits = credits;
         this.studentsEnrolled = studentsEnrolled;
+    }
+
+    public int getCourseid() {
+        return courseid;
+    }
+
+    public void setCourseid(int courseid) {
+        this.courseid = courseid;
     }
 
     public String getName() {

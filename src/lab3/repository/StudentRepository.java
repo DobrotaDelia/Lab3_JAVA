@@ -14,6 +14,13 @@ public class StudentRepository implements ICrudRepository <Student> {
         students=new ArrayList<>();
     }
 
+    public static List<Student> getStudents() {
+        return students;
+    }
+
+    public static void setStudents(List<Student> students) {
+        StudentRepository.students = students;
+    }
 
     @Override
     public Student findOne(Long id) {
@@ -70,10 +77,11 @@ public class StudentRepository implements ICrudRepository <Student> {
 
     @Override
     public Student update(Student entity) {
+
         for(Student s:students){
             if(s.getStudentid()==entity.getStudentid()) {
                 if (!(s.getStudentid()==s.getStudentid() ) )
-                { System.out.print("The StudentsId can't be changed");}
+                { System.out.print("The StudentsId can't be changed"); return entity;}
             }
 
             s.setFirstName(s.getFirstName());
