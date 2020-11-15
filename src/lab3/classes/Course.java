@@ -56,4 +56,15 @@ public class Course {
     public void setStudentsEnrolled(List<Student> studentsEnrolled) {
         this.studentsEnrolled = studentsEnrolled;
     }
+
+    @Override
+    public String toString() {
+        return "Course{" +
+                "name='" + name + '\'' +
+                ", teacher=" + teacher +
+                ", maxEnrollment=" + maxEnrollment +
+                ", credits=" + credits +
+                ", studentsEnrolled=" + studentsEnrolled +
+                '}';
+    }
 }

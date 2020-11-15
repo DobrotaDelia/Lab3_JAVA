@@ -41,17 +41,11 @@ public class Student extends  Person {
 
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Student)) return false;
-        Student student = (Student) o;
-        return getStudentid() == student.getStudentid() &&
-                getTotalCredits() == student.getTotalCredits() &&
-                getEnrolledCourses().equals(student.getEnrolledCourses());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getStudentid(), getTotalCredits(), getEnrolledCourses());
+    public String toString() {
+        return "Student{" +
+                "studentid=" + studentid +
+                ", totalCredits=" + totalCredits +
+                ", enrolledCourses=" + enrolledCourses +
+                '}';
     }
 }

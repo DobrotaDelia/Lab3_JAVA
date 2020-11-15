@@ -17,4 +17,11 @@ public class Teacher extends  Person{
     public void setCourses(List<Course> courses) {
         this.courses = courses;
     }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "courses=" + courses +
+                '}';
+    }
 }

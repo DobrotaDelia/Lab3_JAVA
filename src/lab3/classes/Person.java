@@ -24,5 +24,13 @@ public class Person {
     public void setFirstName(String firstName) {
         FirstName = firstName;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "lastName='" + lastName + '\'' +
+                ", FirstName='" + FirstName + '\'' +
+                '}';
+    }
 }
 
