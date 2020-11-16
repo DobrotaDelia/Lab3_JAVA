@@ -52,16 +52,19 @@ public class TeacherRepository implements ICrudRepository<Teacher> {
             }
         }
         if(index!=-1)
-        {
-            List <Teacher> TeachersArray;
-            for(Teacher t:TeacherRepository.getTeachers()) {
-                TeachersArray = new ArrayList<Teacher>();
-                if(!(t.getTeacherid()==(teachers.get(index).getTeacherid())))
-                        TeachersArray.add(t);
-                //t.setTeachers
 
+        {  //  teachers.remove(index);
+            List <Teacher> TeachersArray;
+            for(Course c:CourseRepository.getCourses()){
+                TeachersArray = new ArrayList<Teacher>();
+                if(c.getTeacher().equals(id)){
+                    TeachersArray.add(c.getTeacher());
+                }
             }
+
+
         }
+
         if(index!=-1)
             return teachers.get(index);
         teachers.remove(index);
@@ -71,6 +74,16 @@ public class TeacherRepository implements ICrudRepository<Teacher> {
 
     @Override
     public Teacher update(Teacher entity) {
+        for(Teacher t:teachers){
+            if(t.getTeacherid()==entity.getTeacherid()) {
+                if (!(t.getTeacherid()==t.getTeacherid() ) )
+                { System.out.print("The TeachersId can't be changed"); return entity;}
+            }
+
+            t.setFirstName(t.getFirstName());
+            t.setLastName(t.getLastName());
+            t.setCourses(t.getCourses());
+        }
         return null;
     }
 }

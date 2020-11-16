@@ -1,9 +1,15 @@
 package lab3.classes;
 
+
 public class Person {
     private String lastName;
     private String FirstName;
 
+    /**
+     *
+     * @param lastName
+     * @param firstName
+     */
     public Person(String lastName, String firstName) {
         this.lastName = lastName;
         this.FirstName = firstName;
