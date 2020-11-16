@@ -1,13 +1,11 @@
 package lab3.repository;
-
 import lab3.classes.Course;
 import lab3.classes.Student;
 import lab3.classes.Teacher;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
+//class with ICRudRepository interface
 public class CourseRepository  implements ICrudRepository <Course>  {
     public static List<Course> courses;
 
@@ -44,7 +42,7 @@ public class CourseRepository  implements ICrudRepository <Course>  {
         return null;
     }
 
-    @Override
+   /* @Override
     public Course delete(Long id) {
         Course course_to_delete = null;
         int index = -1;
@@ -57,11 +55,10 @@ public class CourseRepository  implements ICrudRepository <Course>  {
 
 
         if (index != -1) {
-            courses.remove(index);
             List<Teacher> TeachersArray;
             List<Student> StudentArray;
 
-            for (Teacher t : TeacherRepository.getTeachers()) { //mergem prin teachers
+            for (Teacher t : TeacherRepository.getTeachers()) { //parsing through the list: teachers
                 TeachersArray = new ArrayList<Teacher>();
                 if (!(t.getCourses().equals(id))) {  //cautam cursul cu id ul dat ca parametru
                     TeachersArray.add(t);
@@ -80,10 +77,54 @@ public class CourseRepository  implements ICrudRepository <Course>  {
             }
         }
         return null;
-    }
+    } */
+    //redone
+   @Override
+   public Course delete(Long id) {
+       Course course_to_delete = null;
+       int index = -1;
+       for (int i = 0; i < courses.size(); i++) {
+           if (courses.get(i).getCourseid() == (id)) {
+               course_to_delete = courses.get(i);
+               index = i;
+           }
+       }
 
-            @Override
-            public Course update (Course entity){
+
+       if (index != -1) {
+
+           List<Course> newcourses;
+           //deleting the the course in the list:courses from every teacher in the teachers list
+           for (Teacher t : TeacherRepository.getTeachers()) { //parsing through the list: teachers
+               newcourses = new ArrayList<Course>();
+               for (Course c : t.getCourses())
+                   if (!(c.getCourseid() == course_to_delete.getCourseid()))
+                       newcourses.add(c);
+               t.setCourses(newcourses);
+
+           }
+
+           List<Course> newenrolled;
+           for (Student s : StudentRepository.getStudents()) { //mergem prin studentss
+                   newenrolled = new ArrayList<Course>();
+                   for(Course c: s.getEnrolledCourses()){
+                       if(c.getCourseid()==id)
+                       newenrolled.add(c);}
+                   s.setEnrolledCourses(newenrolled);
+                   }
+           
+       }
+       if (index != -1)
+           return courses.get(index);
+       courses.remove(index);   //removing course from the list: courses
+
+       return null;
+   }
+
+
+
+   @Override
+   public Course update (Course entity){
 
                 for(Course c:courses){
                     if(c.getCourseid()==entity.getCourseid()) {
@@ -96,4 +137,4 @@ public class CourseRepository  implements ICrudRepository <Course>  {
                 }
                 return null;
             }
-        }
+  }

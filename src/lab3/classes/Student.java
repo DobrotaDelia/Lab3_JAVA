@@ -1,13 +1,14 @@
 package lab3.classes;
-
 import java.util.*;
 
+//class Student is a subclass of class Person
 public class Student extends  Person {
 
     private long studentid;
     private int totalCredits;
     private List<Course> enrolledCourses;
 
+    //constructor with parameter
     public Student(long studentid, int totalCredits, List<Course> enrolledCourses, String firstName,String lastName) {
         super(lastName, firstName);
         this.studentid = studentid;
@@ -15,6 +16,7 @@ public class Student extends  Person {
         this.enrolledCourses = enrolledCourses;
     }
 
+    //Getters and Setters
     public long getStudentid() {
         return studentid;
     }

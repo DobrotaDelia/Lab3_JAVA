@@ -1,6 +1,6 @@
 package lab3.classes;
-
 import java.util.*;
+
 public class Course {
     private int courseid;
     private String name;
@@ -9,7 +9,7 @@ public class Course {
     private int credits;
     private List <Student> studentsEnrolled;
 
-
+    //constructor with parameter
     public Course(int courseid, String name, Teacher teacher, int maxEnrollment, int credits, List<Student> studentsEnrolled) {
         this.courseid=courseid;
         this.name = name;
@@ -19,6 +19,8 @@ public class Course {
         this.studentsEnrolled = studentsEnrolled;
     }
 
+
+    //Getters and Setters for the attributes:
     public int getCourseid() {
         return courseid;
     }

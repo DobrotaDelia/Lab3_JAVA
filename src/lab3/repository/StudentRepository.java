@@ -1,13 +1,10 @@
 package lab3.repository;
 import lab3.classes.Course;
 import lab3.classes.Student;
-
-
 import java.util.*;
 
-
+//class with ICRudRepository interface
 public class StudentRepository implements ICrudRepository <Student> {
-
     public static List <Student> students;
 
     public StudentRepository() {
@@ -22,6 +19,7 @@ public class StudentRepository implements ICrudRepository <Student> {
         StudentRepository.students = students;
     }
 
+
     @Override
     public Student findOne(Long id) {
         for(Student s:students)
@@ -30,11 +28,13 @@ public class StudentRepository implements ICrudRepository <Student> {
         return null;
     }
 
+
     @Override
     public Iterable<Student> findAll() {
 
         return students;
     }
+
 
     @Override
     public Student save(Student entity) {
@@ -48,10 +48,10 @@ public class StudentRepository implements ICrudRepository <Student> {
     public Student delete(Long id) {
         Student studentdelete=null;
         int index = -1;
-        for( int i=0; i<students.size(); i++) {
+        for( int i=0; i<students.size(); i++) { //parsing through the list:students
             if (students.get(i).getStudentid()==(id)) {
                 studentdelete = students.get(i);
-                index = i;
+                index = i;  //index of the student we want to delete
             }
         }
 
@@ -61,19 +61,20 @@ public class StudentRepository implements ICrudRepository <Student> {
             List <Student> StudentsArray;
             for(Course c: CourseRepository.getCourses()) {
                   StudentsArray = new ArrayList<Student>();
-                  for(Student s:c.getStudentsEnrolled()) {
-                      if(!(s.getStudentid()==(students.get(index).getStudentid())))
+                  for(Student s:c.getStudentsEnrolled()) {  //we search in the EnrolledStudents list for the student we want to delete
+                      if(!(s.getStudentid()==(students.get(index).getStudentid()))) //if the student si diffrent than the one we want to delete, we add it to another list
                           StudentsArray.add(s);
                   }
-                  c.setStudentsEnrolled(StudentsArray);
+                  c.setStudentsEnrolled(StudentsArray); //replacing the Students Enrolled list with all the students except the one we "deleted"
               }
         }
         if(index!=-1)
             return students.get(index);
-        students.remove(index);
+        students.remove(index);  //we delete the student from our list of students
 
         return null;
     }
+
 
     @Override
     public Student update(Student entity) {

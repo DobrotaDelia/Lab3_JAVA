@@ -5,16 +5,13 @@ public class Person {
     private String lastName;
     private String FirstName;
 
-    /**
-     *
-     * @param lastName
-     * @param firstName
-     */
+    //constructor with parameter
     public Person(String lastName, String firstName) {
         this.lastName = lastName;
         this.FirstName = firstName;
     }
 
+    //Getters and Setters for the attributes
     public String getLastName() {
         return lastName;
     }
